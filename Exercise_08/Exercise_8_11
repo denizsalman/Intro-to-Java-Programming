@@ -1,0 +1,61 @@
+package com.denizsalman;
+
+import javax.xml.stream.events.Characters;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Exercise_8_11 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int number = 0;
+        char[][][] matrices = new char[3][512][3];
+        int index1 = 0;
+        for (int i = 0; i < 512; i++) {
+            convertBinary(number, index1, matrices);
+            number++;
+            index1++;
+        }
+
+      /*  for (int i = 0; i < matrices[1].length; i++) {
+            for (int j = 0; j < matrices.length; j++) {
+                for (int k = 0; k < matrices[j][i].length; k++) {
+                    System.out.print(matrices[j][i][k] +" ");
+                }
+                System.out.println();
+            }
+        }*/
+
+        System.out.print("Enter a number between 0 and 511: ");
+        int index = input.nextInt();
+        for (int i = 0; i < matrices.length; i++) {
+            for (int j = 0; j < matrices[i][1].length;j++){
+                System.out.print(matrices[i][index][j]+" ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    private static void convertBinary(int index1, int number, char[][][] matrices) {
+        String binary = "";
+        while (number != 0){
+            binary = number % 2 + binary;
+            number /= 2;
+        }
+        int length = binary.length();
+        for (int i = 0; i < 9 - length;i++) {
+            binary = "0" + binary;
+        }
+
+        int binaryIndex = 0;
+        for (int i = 0; i < matrices.length; i++) {
+            for (int j = 0; j < matrices[i][i].length;j++) {
+                matrices[i][index1][j] = binary.charAt(binaryIndex) == '0' ? 'H':'T';
+                binaryIndex++;
+            }
+        }
+
+
+    }
+
+}
