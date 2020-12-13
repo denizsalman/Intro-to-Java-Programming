@@ -169,10 +169,13 @@ public class Exercise_17_09 extends Application {
 
 	/** Return a byte[] of fixed-length */
 	private byte[] fixedLength(byte[] x, int n) {
-		byte[] b = new byte[n];
-		for (int i = 0; i < x.length; i++) {
-			b[i] = x[i];
+		if (x.length > n) {
+			byte[] b = new byte[n];
+			for (int i = 0; i < b.length; i++) {
+				b[i] = x[i];
+			}
+			return b;
 		}
-		return b;
+		return x;
 	}
 }
